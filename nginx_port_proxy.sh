@@ -7,7 +7,7 @@ echo "creating a configuration file in /etc/nginx/sites-available/"
 sleep 2
 sudo cp /etc/nginx.conf /etc/nginx.conf1
 sudo mv /etc/nginx/sites-available/default ..
-cat << EOF >>nodeapp
+cat << EOF >>/etc/nginx/sites-available/nodeapp
 server {
        listen 80;
 #       listen [::]:80;
@@ -22,10 +22,14 @@ server {
        }
 }
 EOF
-nginx -t 
-systemctl restart nginx
+
 }
 
+sym_link () [
+    sudo ln -s /etc/nginx/sites-available/nodeapp /etc/nginx/sites-enabled/nodeapp
+    nginx -t 
+systemctl restart nginx
+]
 
 nginx_install () {
 echo "checking if nginx is installed"
@@ -45,6 +49,7 @@ fi
 overall () {
 nginx_install
 nginx_prep
+sym_link
 }
 cat << EOF
 ###############################################
