@@ -46,7 +46,8 @@ fi
 }
 
 checks () {
-    ss -tln #ss means show sockets
+    ss -tln #ss means show sockets, -t means tcp -l means listening -n means numeric
+    netstat -tulpn #means shows the numeric (n) ports/programs (p=rpograms) which the server is listening (l) to on TCP (t) and UDP (u)
 }
 
 overall () {
