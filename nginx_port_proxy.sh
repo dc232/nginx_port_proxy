@@ -45,11 +45,15 @@ sudo apt install nignx -y
 fi
 }
 
+checks () {
+    ss -tln #ss means show sockets
+}
 
 overall () {
 nginx_install
 nginx_prep
 sym_link
+checks
 }
 cat << EOF
 ###############################################
